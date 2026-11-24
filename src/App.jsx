@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Terminal } from "lucide-react";
 import Ipv4Calculator from "./components/Ipv4Calculator";
+import BinaryLab from "./components/BinaryLab";
 import Footer from "./components/Footer";
 
 const TABS = [
   { id: "ipv4", label: "IPv4 Subnetting", ready: true },
+  { id: "binary", label: "Binary Lab", ready: true },
   { id: "vlsm", label: "VLSM Planner", ready: false },
   { id: "supernet", label: "CIDR Summary", ready: false },
   { id: "ipv6", label: "IPv6 Toolkit", ready: false },
@@ -58,7 +60,7 @@ export default function App() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`shrink-0 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 ${
+                className={`shrink-0 px-3.5 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 cursor-pointer ${
                   isActive
                     ? "bg-zinc-100 text-zinc-950 shadow-sm"
                     : "text-zinc-400 hover:text-zinc-200 hover:bg-white/[0.03]"
@@ -82,9 +84,9 @@ export default function App() {
         </nav>
 
         {/* Active Module */}
-        {activeTab === "ipv4" ? (
-          <Ipv4Calculator />
-        ) : (
+        {activeTab === "ipv4" && <Ipv4Calculator />}
+        {activeTab === "binary" && <BinaryLab />}
+        {activeTab !== "ipv4" && activeTab !== "binary" && (
           <div className="rounded-2xl border border-dashed border-zinc-800 bg-zinc-900/30 p-14 text-center">
             <p className="text-sm font-medium text-zinc-200">
               Modul sedang disiapkan
